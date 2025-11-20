@@ -52,18 +52,18 @@ class AbilityTest implements TestClass<"primary" | "secondary" | "dc"> {
 
 }
 
-var openCheck: any | null = null;
+var attributeCheck: any | null = null;
 var openCheckPromise: Promise<any> | null = null;
 
 async function loadOpenCheck(): Promise<any> {
     if (!openCheckPromise) {
         // If no existing Promise, load the module and cache it
         // @ts-ignore
-        openCheckPromise = import('/systems/projectfu/module/checks/checks-v2.mjs')
+        openCheckPromise = import('/systems/projectfu/module/checks/checks.mjs')
             .then((module) => {
-                openCheck = module.ChecksV2.openCheck;
-                if(!openCheck){
-                    throw new Error("openCheck not found");
+                attributeCheck = module.Checks.attributeCheck;
+                if(!attributeCheck){
+                    throw new Error("attributeCheck not found");
                 }
             })
             .catch((err) => {
@@ -94,7 +94,7 @@ async function waitForHook(timeout: number = 5000): Promise<{ roll: Roll }> {
 async function rollAbility(actor, primary, secondary) {
     await loadOpenCheck();
     const hookResultPromise = waitForHook();
-    await openCheck(actor, {primary: primary, secondary: secondary});
+    await attributeCheck(actor, {primary: primary, secondary: secondary});
     const result = await hookResultPromise;
     return result.roll.total || 0;
 }

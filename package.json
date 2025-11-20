@@ -1,10 +1,11 @@
 {
 	"name": "bsa-projectfu",
 	"title": "Beaver's System Adaption Fabula Ultima",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Beaver's System Adaption Fabula Ultima",
 	"#devDir": "C:\\vtts\\v11.315\\Data\\modules",
-	"devDir": "c:\\vtts\\v12.331\\Data\\modules",
+	"#devDir": "c:\\vtts\\v12.331\\Data\\modules",
+    "devDir": "c:\\vtts\\v13.348\\Data\\modules",
 	"main": "src/main.js",
 	"files": [
 		"src/types.ts"
